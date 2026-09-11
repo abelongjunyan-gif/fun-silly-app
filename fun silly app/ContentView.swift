@@ -6,26 +6,43 @@
 // hello there
 
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
     var body: some View {
+
+            shopView
+                .tabItem {
+                    Label("Shop", systemImage: "cart")
+                }
+        }
+        .onAppear {
+            newMeme()
+        }
+    }
+
+    var gameView: some View {
         VStack(spacing: 25) {
-Text("Meme Catcher")
-        .font(.largeTitle)
-        .fontWeight(.bold)
-Text("Score: \(score)")
-        .font(.title2)
-Text("Lives: \(lives)")
-        .font(.title2)
-Text(currentMeme)
-        .font(.system(size: 100))
-Text(message)
-        .font(.headline)
-        .multilineTextAlignment(.center)
-            // overall laayout of the catcher game
-            
-            
-            
+            Text("Meme Catcher")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+
+            Text("Score: \(score)")
+                .font(.title2)
+
+            Text("Lives: \(lives)")
+                .font(.title2)
+
+            Text("Dodge Coins: \(dodgeCoins)")
+                .font(.title3)
+
+            Text(currentMeme)
+                .font(.system(size: 100))
+
+            Text(message)
+                .font(.headline)
+                .multilineTextAlignment(.center)
+
             if gameOver {
                 Button("Play Again") {
                     restartGame()
@@ -39,7 +56,7 @@ Text(message)
                     }
                     .font(.title2)
                     .buttonStyle(.borderedProminent)
-                    
+
                     Button("Skip") {
                         skipMeme()
                     }
@@ -50,6 +67,15 @@ Text(message)
         }
         .padding()
     }
+
+    var shopView: some View {
+        VStack(spacing: 25) {
+            Text("Meme Shop")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+
+            Text("Dodge Coins: \(dodgeCoins)")
+            Text("Lives cost \(lifeCost) coins each")
 }
 
 #Preview {
