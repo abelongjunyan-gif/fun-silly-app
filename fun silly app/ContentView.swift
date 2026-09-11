@@ -9,11 +9,38 @@ import SwiftUI
 import AVFoundation
 
 struct ContentView: View {
-    var body: some View {
+@State private var score = 0
+@State private var lives = 3
+@State private var startingLives = 3
+@State private var currentMeme = "💀"
+@State private var message = "Catch the tuffest memes!"
+@State private var gameOver = false
+@State private var scoreBanked = false
+@State private var dodgeCoins = 0
+@State private var livesToBuy = 1
+@State private var useDodgeCoins = true
+@State private var audioPlayer: AVAudioPlayer?
 
-            shopView
-                .tabItem {
-                    Label("Shop", systemImage: "cart")
+let goodMemes = ["💀", "🔥", "📈", "😎", "🗿"]
+let badMemes = ["🤡", "💩", "😭"]
+let lifeCost = 20
+//prices and emojies
+    
+var purchaseCost: Int {
+        livesToBuy * lifeCost
+    }
+// eg. i want buy 3 lives and each cost 20 so 20x3=60
+
+var body: some View {
+TabView {
+    gameView
+        .tabItem {
+            Label("Game", systemImage: "gamecontroller")
+                }
+
+    shopView
+        .tabItem {
+            Label("Shop", systemImage: "cart")
                 }
         }
         .onAppear {
